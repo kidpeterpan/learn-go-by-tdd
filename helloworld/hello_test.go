@@ -1,13 +1,28 @@
 package main
 
-import "testing"
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
-func TestHello2(t *testing.T) {
-	expected := "hello world!"
+func TestHello(t *testing.T) {
 
-	actual := Hello()
+	t.Run("Should say hello to deku", func(t *testing.T) {
+		expected := "Hello, Deku"
+		name := "Deku"
 
-	if expected != actual {
-		t.Errorf("got %q want %q", actual,expected)
-	}
+		actual := Hello(name)
+
+		assert.Equal(t,expected,actual,"want %q, got %q",expected,actual)
+	})
+
+	t.Run("Should say hello world when input with empty name", func(t *testing.T) {
+		expected := "Hello, world"
+		name := ""
+
+		actual := Hello(name)
+
+		assert.Equal(t,expected,actual,"want %q, got %q",expected,actual)
+	})
+
 }
